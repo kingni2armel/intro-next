@@ -1,16 +1,28 @@
 import Navbar from "../../component/header/Navbar";
 import style from './Connexion.module.css'
 import axios from "axios";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useContext, useState } from "react"
+import { UserContext } from "../../Context/Usercontext";
+
 function Login() {
 
     const [email,setEmail] = useState('')
     const [password,setPassword] =useState('')
+    const router = useRouter()
+    const userContext = useContext(UserContext)
+
     const Connexion = async (e) => {
-            e.preventDefault()
-            const data = {email,password}
-            const resp= await axios.post("http://127.0.0.1:8000/api/authentification",data)
-            console.log(resp)
+        e.preventDefault()
+        const data = {email,password}
+        const resp= await axios.post("http://127.0.0.1:8000/api/authentification",data)
+        console.log(resp)
+        if(resp.data.status===200){
+            userContext.updateUser(resp.data.user)
+            if(resp.data.user.role==='etudiant'){
+                router.push('/')
+            }
+        }
     }
 
     return (  

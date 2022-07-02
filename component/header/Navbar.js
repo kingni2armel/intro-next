@@ -1,7 +1,11 @@
 import Link from "next/link"
 import  style from './Nav.module.css'
-export default function Navbar()
+import { useContext } from "react"
+import { UserContext } from "../../Context/Usercontext"
+ function Navbar()
 {
+        const userContext = useContext(UserContext)
+
         return(
                 
                     <div className={style.container}>
@@ -17,12 +21,14 @@ export default function Navbar()
                                             </Link>
 
                                         </li>
-                                        <li  className={style.Litem}>
-                                            <Link href="/Sing/inscription">
-                                                <a>Add user</a>
-                                            </Link>
-
-                                        </li>  
+                                        {
+                                            userContext.user.role == 'admin' &&
+                                            <li  className={style.Litem}>
+                                                <Link href="/Sing/inscription">
+                                                    <a>Add user</a>
+                                                </Link>
+                                            </li> 
+                                        } 
                                         <li  className={style.Litem}>
                                             <Link href="/List/list">
                                                 <a>List User</a>
@@ -41,6 +47,7 @@ export default function Navbar()
                                             </Link>
 
                                         </li>
+                                          
                                     </ul>
 
                             </div>
@@ -49,3 +56,5 @@ export default function Navbar()
               
         )
 }
+
+export default Navbar;  
