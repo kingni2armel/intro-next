@@ -1,7 +1,25 @@
 .container {
   padding: 0 2rem;
 }
+.image {
 
+  position: relative;
+  width: 100vw  ;
+  height: 500px;
+}
+.Cardgroup{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100vw;
+}
+.CardgroupItem{
+  width: 350px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 350px;
+  margin: 5px;
+  border-radius: 15px;
+}
 .main {
   min-height: 100vh;
   padding: 4rem 0;

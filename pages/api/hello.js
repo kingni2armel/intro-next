@@ -1,5 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import axios from "axios"
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
-}
+  const route = "http://127.0.0.1:8000/api"
+
+  export const http = axios.create({
+    baseURL:"http://127.0.0.1:8000/api",
+  })
